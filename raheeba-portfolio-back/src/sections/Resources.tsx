@@ -62,7 +62,9 @@ export const Resources: React.FC = () => {
                 </div>
 
                 <a
-                  href={`mailto:${profile.email}?subject=${encodeURIComponent(`Request for Resource: ${item.title}`)}`}
+                  href={`${profile.social.emailWeb}&su=${encodeURIComponent(`Request for Resource: ${item.title}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-surface-elevated border border-surface-border hover:border-accent-emerald/40 text-xs font-mono text-text-primary hover:text-accent-emerald transition-colors shrink-0 shadow-sm"
                 >
                   <Mail className="w-3.5 h-3.5" />

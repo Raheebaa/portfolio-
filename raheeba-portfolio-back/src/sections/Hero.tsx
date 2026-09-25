@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail, Phone, Linkedin, MessageSquare, ChevronDown } from 'lucide-react';
+import { ArrowRight, Mail, Phone, Linkedin, MessageSquare, ChevronDown, FileText } from 'lucide-react';
 import { profile } from '../data/profile';
 import { MagneticButton } from '../components/MagneticButton';
 import profileImage from '../assets/profile.jpg';
@@ -78,6 +78,16 @@ export const Hero: React.FC = () => {
               >
                 {profile.hero.ctaContact}
               </MagneticButton>
+
+              <MagneticButton
+                href={profile.social.cv}
+                variant="outline"
+                external
+                icon={<FileText className="w-4 h-4" />}
+              >
+                View CV
+              </MagneticButton>
+
             </motion.div>
 
             {/* Social Icons Row */}
@@ -99,7 +109,9 @@ export const Hero: React.FC = () => {
               </a>
 
               <a
-                href={`mailto:${profile.email}`}
+                href={profile.social.emailWeb}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Send Email"
                 className="p-2.5 rounded-xl bg-surface-elevated/70 border border-surface-border text-text-secondary hover:text-accent-emerald hover:border-accent-emerald/40 transition-colors shadow-sm"
               >
@@ -126,47 +138,25 @@ export const Hero: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Right Column: Portrait Card with WhatsApp image */}
+          {/* Right Column: Circular profile image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="lg:col-span-5 flex justify-center lg:justify-end"
           >
-            <div className="relative w-full max-w-sm">
+            <div className="relative w-full max-w-sm aspect-square">
               {/* Subtle aura blur */}
-              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-accent-emerald/20 to-accent-cyan/10 blur-xl opacity-50" />
+              <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-accent-emerald/20 to-accent-cyan/10 blur-xl opacity-50" />
 
-              {/* Portrait Container */}
-              <div className="relative rounded-2xl overflow-hidden border border-surface-border bg-surface shadow-2xl">
-                <div className="aspect-[4/5] w-full overflow-hidden bg-surface-elevated">
-                  <img
-                    src={profileImage}
-                    alt={profile.name}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover object-center grayscale-[10%] hover:grayscale-0 transition-all duration-700 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
-                </div>
-
-                {/* Bottom Overlay Pill on Card */}
-                <div className="absolute bottom-4 inset-x-4 p-3.5 rounded-xl bg-surface/90 backdrop-blur-md border border-surface-border/80 flex items-center justify-between">
-                  <div>
-                    <span className="font-syne font-bold text-sm text-text-primary block">
-                      {profile.name}
-                    </span>
-                    <span className="font-mono text-[11px] text-text-muted">
-                      {profile.title.split('|')[0].trim()}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent-emerald/10 border border-accent-emerald/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent-emerald animate-pulse" />
-                    <span className="font-mono text-[10px] text-accent-emerald font-medium">
-                      Active
-                    </span>
-                  </div>
-                </div>
+              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-surface-border bg-surface shadow-2xl">
+                <img
+                  src={profileImage}
+                  alt={profile.name}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center grayscale-[10%] hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                />
               </div>
             </div>
           </motion.div>

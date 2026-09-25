@@ -103,7 +103,9 @@ export const profile = {
     email: "mailto:raheebamk3@gmail.com",
     phone: "tel:+918157919477",
     whatsapp: "https://wa.me/918157919477",
-    github: "https://github.com/raheeba-m"
+    github: "https://github.com/Raheebaa",
+    cv: "https://drive.google.com/file/d/1dsrcwlcUUH_C5cN6Vox1AFB8nAKaHXkP/view?usp=sharing",
+    emailWeb: "https://mail.google.com/mail/?view=cm&fs=1&to=raheebamk3@gmail.com"
   },
 
   about: {
@@ -168,7 +170,7 @@ export const profile = {
         { label: "Data Loss", value: "0%" }
       ],
       featured: true,
-      githubUrl: "https://github.com/raheeba-m"
+      githubUrl: "https://github.com/Raheebaa"
     },
     {
       id: "mattermost-kubernetes-migration",
@@ -198,7 +200,7 @@ export const profile = {
         { label: "Storage", value: "Kubernetes PVC" }
       ],
       featured: true,
-      githubUrl: "https://github.com/raheeba-m"
+      githubUrl: "https://github.com/Raheebaa"
     },
     {
       id: "magento-ecommerce-infrastructure",
@@ -228,7 +230,7 @@ export const profile = {
         { label: "Caching", value: "Varnish + Redis" }
       ],
       featured: true,
-      githubUrl: "https://github.com/raheeba-m"
+      githubUrl: "https://github.com/Raheebaa"
     }
   ] as ProjectItem[],
 
@@ -532,7 +534,9 @@ echo "[$(date)] Backup completed successfully."`
     ],
     connect: [
       { name: "LinkedIn", href: "https://linkedin.com/in/raheeba-m", external: true },
-      { name: "Email", href: "mailto:raheebamk3@gmail.com", external: false },
+      { name: "GitHub", href: "https://github.com/Raheebaa", external: true },
+      { name: "View / Download CV", href: "https://drive.google.com/file/d/1dsrcwlcUUH_C5cN6Vox1AFB8nAKaHXkP/view?usp=sharing", external: true },
+      { name: "Email", href: "https://mail.google.com/mail/?view=cm&fs=1&to=raheebamk3@gmail.com", external: true },
       { name: "WhatsApp", href: "https://wa.me/918157919477", external: true },
       { name: "Phone", href: "tel:+918157919477", external: false }
     ],

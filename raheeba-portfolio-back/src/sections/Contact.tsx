@@ -83,7 +83,7 @@ export const Contact: React.FC = () => {
       const body = encodeURIComponent(
         `Name: ${formData.name}\nEmail: ${formData.email}\nCategory: ${formData.category}\n\nMessage:\n${formData.message}`
       );
-      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+      window.location.href = `${profile.social.emailWeb}&su=${subject}&body=${body}`;
       setIsSubmitted(true);
       setIsSubmitting(false);
     }
@@ -132,7 +132,9 @@ export const Contact: React.FC = () => {
                     PRIMARY EMAIL
                   </span>
                   <a
-                    href={`mailto:${profile.email}`}
+                    href={profile.social.emailWeb}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="font-mono text-sm text-text-primary hover:text-accent-emerald transition-colors truncate block"
                   >
                     {profile.email}
@@ -243,7 +245,7 @@ export const Contact: React.FC = () => {
                     Your message was received. I'll get back to you at{' '}
                     <span className="text-accent-emerald font-mono">{formData.email}</span>{' '}
                     within 24 hours. You can also reach me directly at{' '}
-                    <a href={`mailto:${profile.email}`} className="text-accent-emerald font-mono hover:underline">{profile.email}</a>.
+                    <a href={profile.social.emailWeb} target="_blank" rel="noopener noreferrer" className="text-accent-emerald font-mono hover:underline">{profile.email}</a>.
                   </p>
                   <button
                     type="button"
