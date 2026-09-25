@@ -514,13 +514,6 @@ echo "[$(date)] Backup completed successfully."`
   contact: {
     heading: "Let's build something reliable.",
     subheading: "Have a challenge in cloud infrastructure, Kubernetes orchestration, or automated CI/CD pipelines? Reach out directly or dispatch a message below.",
-    formCategories: [
-      "Infrastructure",
-      "CI-CD",
-      "Migration",
-      "Cost Optimization",
-      "General Inquiry"
-    ] as const,
     // Google Sheets Apps Script Web App URL for automatic spreadsheet submission
     // Replace with your Google Apps Script Deployment Web App URL
     googleSheetScriptUrl: import.meta.env.VITE_GOOGLE_SHEET_SCRIPT_URL || "",

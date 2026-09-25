@@ -19,25 +19,25 @@ export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    category: profile.contact.formCategories[0] as string,
+    subject: '',
     message: '',
   });
 
-  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+  const [errors, setErrors] = useState<{ name?: string; email?: string; subject?: string; message?: string }>({});
   const [copied, setCopied] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const hasSheetEndpoint = Boolean(profile.contact.googleSheetScriptUrl?.trim());
 
   const validate = () => {
-    const errs: { name?: string; email?: string; message?: string } = {};
+    const errs: { name?: string; email?: string; subject?: string; message?: string } = {};
     if (!formData.name.trim()) errs.name = 'Please provide your name';
     if (!formData.email.trim()) {
       errs.email = 'Please provide your email address';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       errs.email = 'Please provide a valid email address';
     }
+    if (!formData.subject.trim()) errs.subject = 'Please provide a subject';
     if (!formData.message.trim()) {
       errs.message = 'Please enter a message';
     } else if (formData.message.trim().length < 10) {
@@ -57,7 +57,7 @@ export const Contact: React.FC = () => {
       timestamp: new Date().toISOString(),
       name: formData.name.trim(),
       email: formData.email.trim(),
-      category: formData.category,
+      subject: formData.subject.trim(),
       message: formData.message.trim(),
     };
 
@@ -79,9 +79,9 @@ export const Contact: React.FC = () => {
     } else {
       // No sheet URL configured → open mailto
       setIsSubmitting(false);
-      const subject = encodeURIComponent(`[${formData.category}] DevOps Inquiry from ${formData.name}`);
+      const subject = encodeURIComponent(formData.subject.trim());
       const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\nCategory: ${formData.category}\n\nMessage:\n${formData.message}`
+        `Name: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`
       );
       window.location.href = `${profile.social.emailWeb}&su=${subject}&body=${body}`;
       setIsSubmitted(true);
@@ -239,7 +239,7 @@ export const Contact: React.FC = () => {
                     <CheckCircle className="w-6 h-6" />
                   </div>
                   <h4 className="font-syne text-lg font-bold text-text-primary">
-                    {hasSheetEndpoint ? 'Message Saved to Spreadsheet' : 'Message Prepared & Dispatched'}
+                    Message Sent Successfully
                   </h4>
                   <p className="text-xs text-text-secondary max-w-md mx-auto leading-relaxed font-sans">
                     Your message was received. I'll get back to you at{' '}
@@ -254,7 +254,7 @@ export const Contact: React.FC = () => {
                       setFormData({
                         name: '',
                         email: '',
-                        category: profile.contact.formCategories[0],
+                        subject: '',
                         message: '',
                       });
                     }}
@@ -286,7 +286,7 @@ export const Contact: React.FC = () => {
                         setFormData({ ...formData, name: e.target.value });
                         if (errors.name) setErrors({ ...errors, name: undefined });
                       }}
-                      placeholder="e.g. Sarah Connor, Tech Lead"
+                      placeholder="Your full name"
                       className={`w-full px-4 py-3 rounded-xl bg-surface-subtle border text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors font-sans ${
                         errors.name
                           ? 'border-red-500/80 focus:border-red-500'
@@ -316,7 +316,7 @@ export const Contact: React.FC = () => {
                         setFormData({ ...formData, email: e.target.value });
                         if (errors.email) setErrors({ ...errors, email: undefined });
                       }}
-                      placeholder="sarah@company.com"
+                      placeholder="your.email@example.com"
                       className={`w-full px-4 py-3 rounded-xl bg-surface-subtle border text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors font-sans ${
                         errors.email
                           ? 'border-red-500/80 focus:border-red-500'
@@ -330,26 +330,34 @@ export const Contact: React.FC = () => {
                     )}
                   </div>
 
-                  {/* Category Dropdown */}
+                  {/* Subject Input */}
                   <div>
                     <label
-                      htmlFor="contact-category"
+                      htmlFor="contact-subject"
                       className="block font-mono text-xs text-text-secondary uppercase tracking-wider mb-2"
                     >
-                      Inquiry Category
+                      Subject
                     </label>
-                    <select
-                      id="contact-category"
-                      value={formData.category}
-                      onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-surface-subtle border border-surface-border text-sm text-text-primary focus:outline-none focus:border-accent-emerald transition-colors font-mono cursor-pointer"
-                    >
-                      {profile.contact.formCategories.map((cat) => (
-                        <option key={cat} value={cat} className="bg-surface text-text-primary">
-                          {cat}
-                        </option>
-                      ))}
-                    </select>
+                    <input
+                      id="contact-subject"
+                      type="text"
+                      value={formData.subject}
+                      onChange={(e) => {
+                        setFormData({ ...formData, subject: e.target.value });
+                        if (errors.subject) setErrors({ ...errors, subject: undefined });
+                      }}
+                      placeholder="What's this about?"
+                      className={`w-full px-4 py-3 rounded-xl bg-surface-subtle border text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors font-sans ${
+                        errors.subject
+                          ? 'border-red-500/80 focus:border-red-500'
+                          : 'border-surface-border focus:border-accent-emerald'
+                      }`}
+                    />
+                    {errors.subject && (
+                      <span className="font-mono text-[11px] text-red-400 mt-1 block">
+                        {errors.subject}
+                      </span>
+                    )}
                   </div>
 
                   {/* Message Input */}
@@ -373,7 +381,7 @@ export const Contact: React.FC = () => {
                         setFormData({ ...formData, message: e.target.value });
                         if (errors.message) setErrors({ ...errors, message: undefined });
                       }}
-                      placeholder="Describe your infrastructure goals, Kubernetes setup, cloud migration requirements, or open roles..."
+                      placeholder="Tell me about your project or enquiry"
                       className={`w-full px-4 py-3 rounded-xl bg-surface-subtle border text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors resize-none font-sans ${
                         errors.message
                           ? 'border-red-500/80 focus:border-red-500'
