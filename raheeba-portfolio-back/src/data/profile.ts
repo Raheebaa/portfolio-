@@ -125,19 +125,25 @@ export const profile = {
   techMarquee: [
     { name: "AWS", category: "Cloud" },
     { name: "Azure", category: "Cloud" },
-    { name: "Kubernetes", category: "Orchestration" },
-    { name: "EKS", category: "Managed K8s" },
+    { name: "Kubernetes (K8s)", category: "Orchestration" },
     { name: "Docker", category: "Containers" },
-    { name: "Helm", category: "Package Manager" },
+    { name: "Linux", category: "Operating Systems" },
+    { name: "Git", category: "Version Control" },
+    { name: "GitHub", category: "Version Control" },
+    { name: "Bitbucket", category: "Version Control" },
     { name: "ArgoCD", category: "GitOps CD" },
-    { name: "Jenkins", category: "CI/CD" },
-    { name: "GitHub Actions", category: "CI/CD" },
+    { name: "Bash Scripting", category: "Scripting" },
     { name: "Terraform", category: "IaC" },
+    { name: "MySQL", category: "Databases" },
+    { name: "JavaScript", category: "Frontend" },
+    { name: "HTML", category: "Frontend" },
+    { name: "CSS", category: "Frontend" },
+    { name: "Prometheus", category: "Monitoring" },
+    { name: "Grafana", category: "Monitoring" },
+    { name: "AWS CloudWatch", category: "Monitoring" },
+    { name: "System Monitoring", category: "Monitoring" },
     { name: "Nginx", category: "Proxy & Web" },
-    { name: "Varnish", category: "HTTP Cache" },
-    { name: "Kafka", category: "Event Streams" },
-    { name: "Redis", category: "In-Memory Cache" },
-    { name: "Cloudflare", category: "DNS & Security" }
+    { name: "Apache", category: "Proxy & Web" }
   ],
 
   projects: [
@@ -528,6 +534,7 @@ echo "[$(date)] Backup completed successfully."`
     tagline: "Engineering resilient cloud systems, automated delivery pipelines, and scalable infrastructure.",
     sitemap: [
       { name: "About", href: "#about" },
+      { name: "Skills", href: "#skills" },
       { name: "Projects", href: "#projects" },
       { name: "Notes", href: "#notes" },
       { name: "Contact", href: "#contact" }

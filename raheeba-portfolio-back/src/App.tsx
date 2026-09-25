@@ -4,6 +4,7 @@ import { CustomCursor } from './components/CustomCursor';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { TechMarquee } from './sections/TechMarquee';
+import { Skills } from './sections/Skills';
 import { Projects } from './sections/Projects';
 import { ProjectDetail } from './sections/ProjectDetail';
 import { Experience } from './sections/Experience';
@@ -43,6 +44,7 @@ const AppContent: React.FC = () => {
             <Hero />
             <About />
             <TechMarquee />
+            <Skills />
             <Projects />
             <Experience />
             <EngineeringNotes />

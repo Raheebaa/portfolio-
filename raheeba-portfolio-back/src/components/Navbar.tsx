@@ -6,6 +6,7 @@ import { useRouter } from '../utils/router';
 
 const navLinks = [
   { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
   { name: 'Experience', href: '#experience' },
   { name: 'Notes', href: '#notes' },
@@ -24,7 +25,7 @@ export const Navbar: React.FC = () => {
 
       if (!isHomePage) return;
 
-      const sectionIds = ['about', 'projects', 'experience', 'notes', 'contact'];
+      const sectionIds = ['about', 'skills', 'projects', 'experience', 'notes', 'contact'];
       const scrollPos = window.scrollY + 200;
 
       for (const id of sectionIds) {
